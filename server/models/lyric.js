@@ -6,18 +6,21 @@ const LyricSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'song'
   },
-  likes: { type: Number, default: 0 },
-  content: { type: String }
+  likes: {
+    type: Number,
+    default: 0
+  },
+  content: {
+    type: String
+  }
 });
 
-LyricSchema.statics.like = function(id) {
+LyricSchema.statics.like = async (id) => {
   const Lyric = mongoose.model('lyric');
 
-  return Lyric.findById(id)
-    .then(lyric => {
-      ++lyric.likes;
-      return lyric.save();
-    })
+  const lyric = await Lyric.findById(id);
+  ++lyric.likes;
+  return lyric.save();
 }
 
 mongoose.model('lyric', LyricSchema);

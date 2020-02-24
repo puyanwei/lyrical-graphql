@@ -2,16 +2,15 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: './client/index.jsx',
   output: {
     path: '/',
     filename: 'bundle.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         use: 'babel-loader',
-        test: /\.js$/,
+        test: /\.js|jsx$/,
         exclude: /node_modules/
       },
       {
@@ -19,6 +18,9 @@ module.exports = {
         test: /\.css$/
       }
     ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
   },
   plugins: [
     new HtmlWebpackPlugin({
