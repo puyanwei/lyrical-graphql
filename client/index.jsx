@@ -7,6 +7,7 @@ import { ApolloProvider } from "react-apollo";
 import App from "./App";
 import SongList from "./components/SongList";
 import AddSong from "./components/AddSong";
+import "./style/style.css";
 
 const client = new ApolloClient({});
 
