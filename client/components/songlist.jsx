@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
+import getSongsQuery from "../queries/getSongsQuery";
 
 const SongList = ({ data: { songs, loading } }) => {
   return (
@@ -8,25 +10,22 @@ const SongList = ({ data: { songs, loading } }) => {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <ul className="collection">
-          {songs.map(({ title, id }) => (
-            <li className="collection-item" key={id}>
-              {title}
-            </li>
-          ))}
-        </ul>
+        <div>
+          <br />
+          <ul className="collection">
+            {songs.map(({ title, id }) => (
+              <li className="collection-item" key={id}>
+                {title}
+              </li>
+            ))}
+          </ul>
+          <Link to="/songs/new" className="btn-floating btn-large red right">
+            <i className="material-icons">add</i>
+          </Link>
+        </div>
       )}
     </div>
   );
 };
 
-const query = gql`
-  {
-    songs {
-      id
-      title
-    }
-  }
-`;
-
-export default graphql(query)(SongList);
+export default graphql(getSongsQuery)(SongList);
