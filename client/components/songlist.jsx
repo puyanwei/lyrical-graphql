@@ -3,15 +3,16 @@ import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
 const SongList = ({ data: { songs, loading } }) => {
-  console.log(songs, loading);
   return (
     <div>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <ul>
-          {songs.map(({ title }) => (
-            <li>{title}</li>
+        <ul className="collection">
+          {songs.map(({ title, id }) => (
+            <li className="collection-item" key={id}>
+              {title}
+            </li>
           ))}
         </ul>
       )}
@@ -22,6 +23,7 @@ const SongList = ({ data: { songs, loading } }) => {
 const query = gql`
   {
     songs {
+      id
       title
     }
   }
