@@ -12,3 +12,5 @@ npm run dev
 ```
 
 Go to `http://localhost:4000/#/`
+
+To use the GraphiQL playground go to `http://localhost:4000/graphql`
